@@ -1,0 +1,24 @@
+
+
+.main-section {
+  display: flex;
+  flex-direction: row;
+}
+
+.half {
+  width: 50%;
+}
+
+
+
+header {
+  display: flex;
+  justify-content: center;
+}
+
+.color-box {
+  background: blue;
+  color: #fff;
+  height: 75px;
+  margin: 10px;
+}
