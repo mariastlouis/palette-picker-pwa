@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
+    <script src="https://use.fontawesome.com/e1463ea0c5.js"></script>
   </head>
   <body>
     <header>
@@ -13,33 +14,96 @@
     </header>
     <section class = "main-section">
       <section class = "pick-palette half">
-        <article class = "palette-generator">
-          <button type = "submit" class = "generate-btn"> Generate palette </button>
-        </article>
         <article class = "new-project">
-          Create a new project
+          <div class = "new-project-header article-header">
+          <h2>Projects </h2>
+        </div>
+          <div class = "save-project-inputs">
+            <input class = "project-input" type = "text" placeholder="New project name" />
+            <button type = "submit" class = "button save-project-btn"> Save project </button>
+          </div>
+        </article>
+        <article class = "project-article">
+          <h3 class = "project-name"> Project name </h3>
+          <div class = "project-palette">
+            <p class = "palette-title">  oh yeah  </p>
+            <div class = "palette-row">
+              <div class = "palette-box1 palette-box"> </div>
+              <div class = "palette-box2 palette-box"> </div>
+              <div class = "palette-box3 palette-box"> </div>
+              <div class = "palette-box4 palette-box"> </div>
+              <div class = "palette-box5 palette-box"> </div>
+            </div>
+            <img class = "trash-icon" src = "images/waste-bin.png"</div>
+        </article>
+        <article class = "project-article">
+          <h3 class = "project-name"> Project 2 name </h3>
+          <div class = "project-palette">
+            <p class = "palette-title">  oh yeah  </p>
+            <div class = "palette-row">
+              <div class = "palette-box1 palette-box"> </div>
+              <div class = "palette-box2 palette-box"> </div>
+              <div class = "palette-box3 palette-box"> </div>
+              <div class = "palette-box4 palette-box"> </div>
+              <div class = "palette-box5 palette-box"> </div>
+            </div>
+            <img class = "trash-icon" src = "images/waste-bin.png"/>
+          </div>
+            <div class = "project-palette">
+            <p class = "palette-title">  oh yeah  </p>
+            <div class = "palette-row">
+              <div class = "palette-box1 palette-box"> </div>
+              <div class = "palette-box2 palette-box"> </div>
+              <div class = "palette-box3 palette-box"> </div>
+              <div class = "palette-box4 palette-box"> </div>
+              <div class = "palette-box5 palette-box"> </div>
+            </div>
+            <img class = "trash-icon" src = "images/waste-bin.png"/>
+          </div>
         </article>
 
 
       </section> 
       
       <section class = "palette half">
-        <div class = "color-box box1">
-          box 1
+        <article class = "generate-color">
+          <div class = "article-header">
+            <button type = "submit" class = "generate-btn button"> <img class = "palette-icon" src ="./images/painter-palette.png" /> Generate palette </button>
         </div>
-        <div class = "color-box box2">
-          box 2
-        </div>
+        </article>
+        <article class = "color-box-holder">
+          <div class = "color-box color-box1">
+            <div class = "unlock-icon icon"></div>
+            <div class = "opaque hex hex-code1"> </div>
+          </div>
+          <div class = "color-box color-box2">
+            <div class = "unlock-icon icon"></div>
+            <div class = "opaque hex hex-code2"> </div>
+          </div>
 
-        <div class = "color-box box3">
-          box 3
-        </div>
-        <div class = "color-box box4">
-          box 4
-        </div>
-        <div class = "color-box box5">
-          box 5
-        </div>
+          <div class = "color-box color-box3">
+            <div class = "unlock-icon icon"></div>
+            <div class = "opaque hex hex-code3"> </div>
+          </div>
+
+          <div class = "color-box color-box4">
+            <div class = "unlock-icon icon"></div>
+            <div class = "opaque hex hex-code4"> </div>
+          </div>
+
+          <div class = "color-box color-box5">
+            <div class = "unlock-icon icon"></div>
+            <div class = "opaque hex hex-code5"> </div>
+          </div>
+      </article>
+      <article class = "select-project">
+        <select class = "color-select">
+          <option class = "color-value" value =""> Pick a project </option>
+          <option class = "color-value" value ="other"> Other option </option>
+        </select>
+        <input class = "palette-input" type = "text" placeholder="New palette name" />
+        <button type = "submit" class = "button save-palette-btn"> Save palette </button>
+      </article>
       </section>
     </section>
       <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'> </script>
