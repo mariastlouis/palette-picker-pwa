@@ -183,3 +183,13 @@ button.generate-btn {
   margin-left: 10px;
   cursor: pointer;
 }
+
+@media only screen and (max-width: 900px) {
+  .main-section {
+  flex-direction: column;
+  }
+
+  .half {
+    width: 90%;
+  }
+}
