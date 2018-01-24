@@ -5,15 +5,110 @@
     <title> Palette Picker </title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css?family=Oswald:300,400,600" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
-    <script src="https://use.fontawesome.com/e1463ea0c5.js"></script>
+   
+
   </head>
   <body>
-    <header>
+    <!-- <header>
       <h1> Palette picker </h1>
-    </header>
+    </header> -->
     <section class = "main-section">
-      <section class = "pick-palette half">
+  
+      
+      <section class = "palette">
+        <article class = "generate-color">
+          <div class = "article-header">
+            <h1> Palette Picker </h1>
+          
+        </div>
+        </article>
+        <section class = "palette-section">
+          <article class = "select-project">
+            <h3> Save this palette </h3>
+            <p> <span class="small"> select a project </span></p>
+            <select class = "color-select">
+              <option class = "color-value" value =""> Select a project </option>
+              <option class = "color-value" value ="other"> Other option </option>
+            </select>
+            <p> <span class="small"> palette name </span></p>
+   
+            <input class = "palette-input" type = "text" />
+          <button type = "submit" class = "button save-palette-btn"> Save palette </button>
+        </article>
+
+
+        <article class = "donut-chart-article">
+          <div class="donut-chart">
+            <div id="part1" class="portion-block">
+              <div class="circle circle1"></div>
+            </div>
+            <div id="part2" class="portion-block">
+              <div class="circle circle2"></div>
+            </div>
+            <div id="part3" class="portion-block">
+              <div class="circle circle3"></div>
+            </div>
+            <div id="part4" class="portion-block">
+              <div class="circle circle4"></div>
+            </div>
+            <div id="part5" class="portion-block">
+              <div class="circle circle5"></div>
+            </div>
+            <p class="center"></p>        
+          </div>
+
+
+        </article>
+
+         <article class = "select-project">
+            <h3> Create a new project</h3>
+           
+           
+            <p> <span class="small"> Project name </span></p>
+   
+            <input class = "palette-input" type = "text" />
+          <button type = "submit" class = "button save-palette-btn"> Save project </button>
+        </article>
+   
+
+      </section>
+      <aside class = "button-generate">
+        <button type = "submit" class = "generate-btn button"> <img class = "palette-icon" src ="./images/painter-palette.png" /> Create new palette </button>
+      </aside>
+      
+        <article class = "color-box-holder">
+
+          <div class = "color-box color-box1">
+            <div class = "unlock-icon icon"></div>
+            <div class = "opaque hex hex-code1"> </div>
+          </div>
+          <div class = "color-box color-box2">
+            <div class = "unlock-icon icon"></div>
+            <div class = "opaque hex hex-code2"> </div>
+          </div>
+
+          <div class = "color-box color-box3">
+            <div class = "unlock-icon icon"></div>
+            <div class = "opaque hex hex-code3"> </div>
+          </div>
+
+          <div class = "color-box color-box4">
+            <div class = "unlock-icon icon"></div>
+            <div class = "opaque hex hex-code4"> </div>
+          </div>
+
+          <div class = "color-box color-box5">
+            <div class = "unlock-icon icon"></div>
+            <div class = "opaque hex hex-code5"> </div>
+          </div>
+      </article>
+
+
+      </section>
+
+          <section class = "pick-palette">
         <article class = "new-project">
           <div class = "new-project-header article-header">
           <h2>Projects </h2>
@@ -64,47 +159,10 @@
 
 
       </section> 
-      
-      <section class = "palette half">
-        <article class = "generate-color">
-          <div class = "article-header">
-            <button type = "submit" class = "generate-btn button"> <img class = "palette-icon" src ="./images/painter-palette.png" /> Generate palette </button>
-        </div>
-        </article>
-        <article class = "color-box-holder">
-          <div class = "color-box color-box1">
-            <div class = "unlock-icon icon"></div>
-            <div class = "opaque hex hex-code1"> </div>
-          </div>
-          <div class = "color-box color-box2">
-            <div class = "unlock-icon icon"></div>
-            <div class = "opaque hex hex-code2"> </div>
-          </div>
 
-          <div class = "color-box color-box3">
-            <div class = "unlock-icon icon"></div>
-            <div class = "opaque hex hex-code3"> </div>
-          </div>
 
-          <div class = "color-box color-box4">
-            <div class = "unlock-icon icon"></div>
-            <div class = "opaque hex hex-code4"> </div>
-          </div>
 
-          <div class = "color-box color-box5">
-            <div class = "unlock-icon icon"></div>
-            <div class = "opaque hex hex-code5"> </div>
-          </div>
-      </article>
-      <article class = "select-project">
-        <select class = "color-select">
-          <option class = "color-value" value =""> Pick a project </option>
-          <option class = "color-value" value ="other"> Other option </option>
-        </select>
-        <input class = "palette-input" type = "text" placeholder="New palette name" />
-        <button type = "submit" class = "button save-palette-btn"> Save palette </button>
-      </article>
-      </section>
+
     </section>
       <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'> </script>
     <script type="text/javascript" src = "js/scripts.js"> </script>
