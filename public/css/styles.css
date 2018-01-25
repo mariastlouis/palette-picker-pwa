@@ -175,7 +175,15 @@ select:not([multiple]) {
   font-size: 13px;
 }
 
-.palette-input {
+.palette-input{
+  border: none;
+  border-bottom: 1px solid gray;
+  margin-bottom: 10px;
+  width: 100%;
+  outline: none;
+}
+
+.project-input {
   border: none;
   border-bottom: 1px solid gray;
   margin-bottom: 10px;
@@ -194,11 +202,11 @@ select:not([multiple]) {
     -webkit-appearance: none;
 }*/
 
-.project-input {
+/*.project-input {
     height: 20px;
     outline: none;
     width: 40%;
-}
+}*/
 
 .save-palette-btn, .save-project-btn{
   height: 25px;
