@@ -60,7 +60,7 @@ const getProjects = async () => {
 }
 
 const appendPalettes = () => {
-  console.log(palettes)
+  console.log(projects)
 }
 
 const appendProjects = () => {
@@ -71,11 +71,12 @@ const appendProjects = () => {
   );
 
   $('.project-container').html(projectCards)
+  console.log(projects)
 }
 
 const postProject = async () => {
-  let newProjectTitle = $('.project-input')
-  let newProjectName = newProjectTitle.val();
+  const newProjectTitle = $('.project-input')
+  const newProjectName = newProjectTitle.val();
   const savedProject = await fetch('/api/v1/projects', {
     method: 'POST',
     headers: {
@@ -84,7 +85,9 @@ const postProject = async () => {
     body: JSON.stringify({title: newProjectName})
   })
   const idNewProject = await savedProject.json();
-  console.log(idNewProject)
+  const newProject = Object.assign({}, {title: newProjectName}, {id:idNewProject});
+  projects.push(newProject)
+  appendProjects()
   newProjectTitle.val('')
 
 }
