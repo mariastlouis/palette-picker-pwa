@@ -125,3 +125,19 @@ app.get('/api/v1/palettes/:id', (request, response) =>{
     return response.status(500).json({error})
   })
 })
+
+
+app.delete('/api/v1/palettes/:id', (request, response) => {
+  database('palettes').where( 'id', request.params.id).del()
+    .then(palette => {
+      if (palette) {
+        return response.sendStatus(204);
+      } else {
+        return response.status(422).json({ error: 'Not Found' });
+      }
+    })
+    .catch(error => {
+      return response.status(500).json({ error });
+    });
+});
+
