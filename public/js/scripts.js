@@ -49,6 +49,7 @@ const getPalettes = async(projectId, projectTitle) => {
   const paletteObject = await paletteFetch.json();
   const palette = paletteObject.palettes
   palettes.push(...palette)
+  console.log(palettes)
   appendPalette(projectTitle, palette)
 
 }
@@ -77,9 +78,27 @@ const appendPalette= (projectTitle, project) => {
  $('.project-container').append(`<h3> ${projectTitle} </h3>`)
 
  const setPalette = palettes.forEach(palette => {
+
   return $('.project-container').append (`
-    <div class = "save-palette">
+    <div class = "project-palette">
       <p> ${palette.title} </p>
+      <div class = "palette-row">
+        <div 
+          class = "palette-box1 palette-box"
+          style = "background-color: ${palette.color1}">
+        </div>
+        <div class = "palette-box2 palette-box"
+        style = "background-color: ${palette.color2}">
+        </div>
+          <div class = "palette-box3 palette-box"
+          style = "background-color: ${palette.color3}">
+          </div>
+          <div class = "palette-box4 palette-box"
+          style = "background-color: ${palette.color4}"> </div>
+          <div class = "palette-box5 palette-box"
+          style = "background-color: ${palette.color5}"> </div>
+      </div>
+          <img class = "trash-icon" src = "images/waste-bin.png"/>
     </div>
     `)
  })
@@ -155,6 +174,7 @@ const grabPalette = () => {
 
   postPalette(projectId, paletteBody)
   const getProject = getSpecificProject(projectId)
+
 }
 
 const postPalette = async (projectId, palette) => {
@@ -169,10 +189,8 @@ const postPalette = async (projectId, palette) => {
   const idNewPalette = await savedPalette.json();
   console.log(idNewPalette)
   const paletteTitle = $('.palette-input').val()
-  console.log(projectId)
   const newPalette = Object.assign({}, idNewPalette, {project_id: projectId}, palette )
   palettes.push(newPalette)
-  console.log(palettes)
 
 }
 
