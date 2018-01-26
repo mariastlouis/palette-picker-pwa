@@ -49,7 +49,6 @@ const getPalettes = async(projectId, projectTitle) => {
   const paletteObject = await paletteFetch.json();
   const palette = paletteObject.palettes
   palettes.push(...palette)
-  console.log(palettes)
   appendPalette(projectTitle, palette)
 
 }
@@ -59,6 +58,11 @@ const getProjects = async () => {
   const projectObject = await projectFetch.json();
   projects = projectObject.projects
   appendSelect()
+  
+  projects.forEach(project => {
+    appendProjects(project)
+  })
+
 
   projects.forEach(project => {
     getPalettes(project.id, project.title)
@@ -75,11 +79,13 @@ appendPalette(projectTitle, selectedProject)
 }
 
 const appendPalette= (projectTitle, project) => {
+
  $('.project-container').append(`<h3> ${projectTitle} </h3>`)
 
  const setPalette = palettes.forEach(palette => {
 
-  return $('.project-container').append (`
+return $(`.projectId-${palette.project_id}`).append (`
+
     <div class = "project-palette">
       <p> ${palette.title} </p>
       <div class = "palette-row">
@@ -106,7 +112,14 @@ const appendPalette= (projectTitle, project) => {
 }
 
 const appendProjects = (project) => {
+  console.log(project)
+ $('.project-container').append(`
+  <article class = "project-article project-${project.id}">
+   <h3> ${project.title} </h3>
+   <div class = "project-palettes projectId-${project.id}">
 
+   </div>
+   </article>`)
 
 }
 
@@ -143,8 +156,9 @@ const postProject = async () => {
     body: JSON.stringify({title: newProjectName})
   })
   const idNewProject = await savedProject.json();
-  const newProject = Object.assign({}, {title: newProjectName}, {id:idNewProject});
+  const newProject = Object.assign({}, {title: newProjectName}, idNewProject);
   projects.push(newProject)
+  console.log(projects)
   appendProjects(newProject);
   appendSelect()
 
