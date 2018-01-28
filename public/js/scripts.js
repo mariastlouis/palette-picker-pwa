@@ -2,30 +2,38 @@
 $(document).ready(() => {
   setColors();
   getProjects();
-
-});
+  setProjectSelect()
+ });
 
 let projects =[];
 let palettes = [];
 let newAddedProject = null;
 
+const setProjectSelect = () => {
+setTimeout (() => {
 
-
-// const setSelect = (projectId) => {
-//  $('#project-select').val(projectId)
-//  console.log('hello')
-// }
-
-const displaySelectProject = async() => {
+const projectSelect = projects.map(project => 
+`<option class = "color-value" value = ${project.id}> ${project.title} </option>`);
+  $('.color-select').html(projectSelect)
+  const projectId = $('#project-select').val()
  
+  displaySelectProject(projectId)
+}, 800)
 
+}
+
+
+const displaySelectProject = async(projectId) => {
+ 
+console.log(projectId)
 $('.selected-project').html('');
-const projectId = parseInt($('#project-select').val())
+// const projectId = $('#project-select').val()
 const projectTitle = $('#project-select option:selected').text()
+console.log(projectTitle)
 const paletteFetch = await fetch(`/api/v1/projects/${projectId}/palettes`);
 const paletteObject = await paletteFetch.json();
 const paletteArray = paletteObject.palettes
- 
+ console.log(paletteArray)
  $('.selected-project').append(`<h3> ${projectTitle} </h3>`)
 
 const setPalette = paletteArray.forEach(palette => 
@@ -122,7 +130,7 @@ const getProjects = async () => {
 
   projects.forEach(project => {
     getPalettes(project.id, project.title)
-    appendSelect(project.id, project.title)
+    // appendSelect(project.id, project.title)
 
   })
 }
@@ -173,27 +181,28 @@ const appendPalette= (projectTitle, paletteArray) => {
 }
 
 
-
-const appendSelect = (projectId, projectTitle) => {
-
-  if(newAddedProject) {
-   $('.color-select').append(`
-    <option class = "color-value" value = ${newAddedProject.id} selected > ${newAddedProject.title} </option>`)
-    newAddedProject = null;
-  } else {
-    $('.color-select').append(`
-      <option class = "color-value" value = ${projectId}> ${projectTitle} </option>`)
-
-  //   const projectSelect = projects.map(project => 
-
-
-  //   `<option class = "color-value" value = ${project.id}> ${project.title} </option>`
-  // );
-  // $('.color-select').html(projectSelect)
-    }
+const appendNewProjectSelect = (projectId, projectTitle) => {
   
-  // displaySelectProject()
+  $('.color-select').append(`
+    <option class = "color-value" value = ${projectId} selected> ${projectTitle} </option>`)
+  displaySelectProject(projectId)
 }
+
+
+// const appendSelect = (projectId, projectTitle) => {
+
+//   if(newAddedProject) {
+//    $('.color-select').append(`
+//     <option class = "color-value" value = ${newAddedProject.id} selected > ${newAddedProject.title} </option>`)
+//     newAddedProject = null;
+//   } else {
+//     $('.color-select').append(`
+//       <option class = "color-value" value = ${projectId}> ${projectTitle} </option>`)
+
+
+//     }
+  
+// }
 
 //   if (selectedProject) {
 //    $('.color-select').append(`
@@ -222,7 +231,9 @@ const postProject = async () => {
 
   const newSelectedProjectId = await savedProject.json()
   const newProjectObject = Object.assign ({}, {title: newProjectName}, newSelectedProjectId)
-  newAddedProject = newProjectObject
+  appendNewProjectSelect(newProjectObject.id, newProjectName)
+
+  // newAddedProject = newProjectObject
 
   newProjectTitle.val('')
 
@@ -248,7 +259,8 @@ const grabPalette = () => {
   postPalette(projectId, paletteBody)
 
 
-  displaySelectProject()
+  
+ 
   $('.palette-input').val('')
 }
 
@@ -264,6 +276,7 @@ const postPalette = async (projectId, palette) => {
   const idNewPalette = await savedPalette.json();
   $('.project-container').html('')
   getProjects();
+  displaySelectProject(projectId)
 
 }
 
@@ -283,7 +296,7 @@ $('.selected-project').on('click', '.delete-btn', async function() {
 
 });
 
-$('#project-select').on('change', displaySelectProject)
+// $('#project-select').on('change', displaySelectProject)
 $('.save-palette-btn').on('click', grabPalette)
 $('.save-project-btn').on('click', postProject)
 $('.generate-btn').on('click', setColors)

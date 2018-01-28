@@ -55,9 +55,26 @@ describe('get /api/v1/projects', () => {
         })
         .catch(error => {
           throw error;
-        });
-    });
+        })
+    })
   });
 
+
+describe('POST /api/v1/projects', () => {
+  it('should build a new project', () => {
+    return chai.request(server)
+    .post('/api/v1/projects')
+    .send({
+      title: 'Mock Project'
+    })
+    .then(response => {
+      response.should.have.status(201);
+    })
+    .catch(error => {
+      throw error;
+    })
+  })
+});
   
+
 });
