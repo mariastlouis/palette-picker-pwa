@@ -133,36 +133,45 @@ const getProjects = async () => {
 
 const appendPalette= (projectTitle, paletteArray) => {
 
+ const setPalette = paletteArray.map(palette => 
 
- $('.project-container').append(`<h3> ${projectTitle} </h3>`)
-
- const setPalette = paletteArray.forEach(palette => 
-
-  $(`.project-container`).append (`
-
-      <div class= "project-palette" id ="palette-${palette.id}">
-      <h4> ${palette.title} </h4>
-      <div class = "palette-row">
-        <div 
-          class = "palette-box1 palette-box"
-          style = "background-color: ${palette.color1}">
-        </div>
-        <div class = "palette-box2 palette-box"
-        style = "background-color: ${palette.color2}">
-        </div>
-          <div class = "palette-box3 palette-box"
-          style = "background-color: ${palette.color3}">
-          </div>
-          <div class = "palette-box4 palette-box"
-          style = "background-color: ${palette.color4}"> </div>
-          <div class = "palette-box5 palette-box"
-          style = "background-color: ${palette.color5}"> </div>
+ `<div class= "project-palette" id ="palette-${palette.id}">
+    <h4> ${palette.title} </h4>
+    <div class = "palette-row">
+      <div 
+        class = "palette-box1 palette-box"
+        style = "background-color: ${palette.color1}">
       </div>
-          
-          </div>
-    `)
+      <div
+        class = "palette-box2 palette-box"
+        style = "background-color: ${palette.color2}">
+      </div>
+      <div
+        class = "palette-box3 palette-box"
+        style = "background-color: ${palette.color3}">
+      </div>
+      <div
+        class = "palette-box4 palette-box"
+        style = "background-color: ${palette.color4}"> </div>
+      <div
+        class = "palette-box5 palette-box"
+        style = "background-color: ${palette.color5}"> </div>
+    </div>
+  </div>`
  )
+
+
+
+ $('.project-container').append(`
+  <div class = "project-card">
+    <h3> ${projectTitle} </h3>
+    <div class = "palettes-for-project">
+    ${setPalette}
+    </div>
+  </div>`)
  
+
+  // $('.palettes-for-project').html(setPalette)
 }
 
 
