@@ -11,9 +11,7 @@
 
   </head>
   <body>
-    <!-- <header>
-      <h1> Palette picker </h1>
-    </header> -->
+
     <section class = "main-section">
   
       
@@ -25,14 +23,13 @@
         </div>
         </article>
         <section class = "palette-section">
-          <article class = "select-palette">
+          <article class = "select-palette third">
             <h3> Project </h3>
             <select class = "color-select" id = "project-select" onchange="displaySelectProject(event.target.value)">
              
             </select>
             <h3> Save this palette to the project </h3>
 
-         <!--    <p> <span class="small"> palette name </span></p> -->
    
             <input class = "palette-input" type = "text" placeholder = "palette name" />
           <button type = "submit" class = "button save-palette-btn"> Save palette </button>
@@ -46,7 +43,8 @@
         </article>
 
 
-        <article class = "donut-chart-article">
+        <article class = "chart third">
+          <div class = "donut-chart-article">
           <div class="donut-chart">
             <div id="part1" class="portion-block">
               <div class="circle circle1"></div>
@@ -65,11 +63,12 @@
             </div>
             <p class="center"></p>        
           </div>
+        </div>
 
 
         </article>
 
-        <article class = "highlight-project">
+        <article class = "highlight-project third">
           
           <div class = "selected-project">
 

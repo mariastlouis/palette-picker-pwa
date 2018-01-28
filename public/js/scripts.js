@@ -133,10 +133,20 @@ const getProjects = async () => {
 
 const appendPalette= (projectTitle, paletteArray) => {
 
- const setPalette = paletteArray.map(palette => 
+ $('.project-container').append(` 
 
- `<div class= "project-palette" id ="palette-${palette.id}">
+<div class = "project-card" id= ${projectTitle}>
+  <h3 class = project-title-hed> ${projectTitle} </h3>
+</div>
+  `)
+
+const title = projectTitle
+
+ const newPalette = paletteArray.forEach(palette => 
+
+ $(`#${projectTitle}`).append(`<div class= "project-palette" id ="palette-${palette.id}">
     <h4> ${palette.title} </h4>
+
     <div class = "palette-row">
       <div 
         class = "palette-box1 palette-box"
@@ -157,22 +167,18 @@ const appendPalette= (projectTitle, paletteArray) => {
         class = "palette-box5 palette-box"
         style = "background-color: ${palette.color5}"> </div>
     </div>
-  </div>`
- )
-
-
-
- $('.project-container').append(`
-  <div class = "project-card">
-    <h3> ${projectTitle} </h3>
-    <div class = "palettes-for-project">
-    ${setPalette}
-    </div>
   </div>`)
+ 
+)
+
+ }
+
+
+
  
 
   // $('.palettes-for-project').html(setPalette)
-}
+
 
 
 const appendNewProjectSelect = (projectId, projectTitle) => {

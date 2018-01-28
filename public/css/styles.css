@@ -21,12 +21,13 @@ h2, h3, h4, p {
   -webkit-margin-after: 0em;
 }
 
-h1 {
+h1, h2 {
   color: #fff;
   font-size: 30px;
   font-weight: 300;
 }
-h2, h3 {
+
+h3, h4 {
   color: #6b6b6b;
   font-weight: 300;
 }
@@ -166,6 +167,11 @@ select:not([multiple]) {
   font-size: 13px;
 }
 
+.select-palette {
+  display:flex;
+  flex-direction: column;
+}
+
 .palette-input{
   border: none;
   border-bottom: 1px solid gray;
@@ -182,22 +188,12 @@ select:not([multiple]) {
   outline: none;
 }
 
+.third {
+  width: 25%;
+  margin-left: 5%;
+  margin-right: 5%;
 
-/*.color-select {
-    height: 25px;
-    border: none;
-    background: #8a98b8;
-    color: #fff;
-    outline: none;
-    border-radius: 0;
-    -webkit-appearance: none;
-}*/
-
-/*.project-input {
-    height: 20px;
-    outline: none;
-    width: 40%;
-}*/
+}
 
 .save-palette-btn, .save-project-btn{
   height: 25px;
@@ -216,7 +212,7 @@ select:not([multiple]) {
   min-width: 150px;
 }
 
-.selected-project-hed {
+.selected-project-hed, .project-title-hed {
   text-align: center;
   border-bottom: 1px solid gray;
   text-transform: uppercase;
@@ -245,8 +241,10 @@ select:not([multiple]) {
 }
 
 .project-card {
-  width: 230px;
-  border: 1px solid gray;
+  box-shadow: 1.5px 3px 3px 1.5px #566782;
+  margin: 10px;
+  width: 220px;
+  padding: 10px;
 }
 .palette-row {
   display: flex;
@@ -273,10 +271,9 @@ select:not([multiple]) {
 .palette-section {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
   padding-top: 20px;
-  padding-right: 20px;
-  padding-left: 20px;
+  justify-content: center;
+ 
 }
 
 .card {
@@ -392,12 +389,37 @@ font-size: 28px;
     to {transform: rotate(72deg);}
 } 
 
-/*@media only screen and (max-width: 900px) {
-  .main-section {
-  flex-direction: column;
+@media screen and (max-width: 1000px) {
+  .project-card-holder {
+    width: 750px;
   }
+}
 
-  .half {
-    width: 90%;
+@media screen and (max-width: 830px) {
+  .project-card-holder { 
+    width: 500px;
   }
-}*/
+}
+
+@media screen and (max-width: 680px) {
+  .palette-section { 
+    flex-direction: column;
+  }
+  .third {
+    width: 100%;
+    margin-left: 0px;
+  margin-right: 0px;
+  }
+}
+
+@media screen and (max-width: 520px) {
+  .project-card-holder { 
+    width: 250px;
+  }
+}
+
+@media screen and (max-width: 430px) {
+  .opaque { 
+    font-size: 10px;
+  }
+}
