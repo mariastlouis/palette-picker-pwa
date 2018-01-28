@@ -141,3 +141,5 @@ app.delete('/api/v1/palettes/:id', (request, response) => {
     });
 });
 
+module.exports = app; // Exports server as app to be used in testing environment
+

@@ -115,12 +115,14 @@ const getProjects = async () => {
   const projectFetch = await fetch ('/api/v1/projects');
   const projectObject = await projectFetch.json();
   projects = projectObject.projects
-  appendSelect()
+  // appendSelect()
   palettes = [];
+  // displaySelectProject()
 
 
   projects.forEach(project => {
     getPalettes(project.id, project.title)
+    appendSelect(project.id, project.title)
 
   })
 }
@@ -172,22 +174,25 @@ const appendPalette= (projectTitle, paletteArray) => {
 
 
 
-const appendSelect = () => {
+const appendSelect = (projectId, projectTitle) => {
 
   if(newAddedProject) {
    $('.color-select').append(`
     <option class = "color-value" value = ${newAddedProject.id} selected > ${newAddedProject.title} </option>`)
     newAddedProject = null;
   } else {
-    const projectSelect = projects.map(project => 
+    $('.color-select').append(`
+      <option class = "color-value" value = ${projectId}> ${projectTitle} </option>`)
+
+  //   const projectSelect = projects.map(project => 
 
 
-    `<option class = "color-value" value = ${project.id}> ${project.title} </option>`
-  );
-  $('.color-select').html(projectSelect)
+  //   `<option class = "color-value" value = ${project.id}> ${project.title} </option>`
+  // );
+  // $('.color-select').html(projectSelect)
     }
   
-  displaySelectProject()
+  // displaySelectProject()
 }
 
 //   if (selectedProject) {
