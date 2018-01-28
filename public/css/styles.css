@@ -43,16 +43,7 @@ h3 {
     justify-content: center;
 }
 
-/*.main-section {
-  display: flex;
-  flex-direction: row;
-}
-*/
-/*.half {
-  width: 40%;
-  margin: 5%;
-}
-*/
+
 .palette {
   background: #fff;
 }
@@ -221,13 +212,22 @@ select:not([multiple]) {
   padding: 10px;
 }
 
+.selected-project {
+  min-width: 150px;
+}
+
+.selected-project-hed {
+  text-align: center;
+  border-bottom: 1px solid gray;
+  text-transform: uppercase;
+}
 .project-article {
   margin: 10px;
 }
 
 .project-palette {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   margin-top: 5px;
 }
 .palette-row {

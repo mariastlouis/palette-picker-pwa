@@ -26,22 +26,21 @@
         </article>
         <section class = "palette-section">
           <article class = "select-palette">
-            <h3> Save this palette </h3>
-            <p> <span class="small"> select a project </span></p>
+            <h3> Project </h3>
             <select class = "color-select" id = "project-select" onchange="displaySelectProject(event.target.value)">
              
             </select>
-            <p> <span class="small"> palette name </span></p>
+            <h3> Save this palette to the project </h3>
+
+         <!--    <p> <span class="small"> palette name </span></p> -->
    
-            <input class = "palette-input" type = "text" />
+            <input class = "palette-input" type = "text" placeholder = "palette name" />
           <button type = "submit" class = "button save-palette-btn"> Save palette </button>
 
             <h3> Create a new project</h3>
            
-           
-            <p> <span class="small"> Project name </span></p>
    
-            <input class = "project-input" type = "text" />
+            <input class = "project-input" type = "text" placeholder="project name" />
           <button type = "submit" class = "button save-project-btn"> Save project </button>
 
         </article>
@@ -70,8 +69,12 @@
 
         </article>
 
-         <article class = "selected-project">
+        <article class = "highlight-project">
           
+          <div class = "selected-project">
+
+          </div>
+
         </article>
    
 

@@ -34,7 +34,7 @@ const paletteFetch = await fetch(`/api/v1/projects/${projectId}/palettes`);
 const paletteObject = await paletteFetch.json();
 const paletteArray = paletteObject.palettes
  console.log(paletteArray)
- $('.selected-project').append(`<h3> ${projectTitle} </h3>`)
+ $('.selected-project').append(`<h3 class = "selected-project-hed"> ${projectTitle} </h3>`)
 
 const setPalette = paletteArray.forEach(palette => 
 
