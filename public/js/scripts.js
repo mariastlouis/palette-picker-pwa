@@ -2,11 +2,68 @@
 $(document).ready(() => {
   setColors();
   getProjects();
+
 });
 
 let projects =[];
 let palettes = [];
-let selectedProject = '';
+let newAddedProject = null;
+
+
+
+// const setSelect = (projectId) => {
+//  $('#project-select').val(projectId)
+//  console.log('hello')
+// }
+
+const displaySelectProject = async() => {
+ 
+
+$('.selected-project').html('');
+const projectId = parseInt($('#project-select').val())
+const projectTitle = $('#project-select option:selected').text()
+const paletteFetch = await fetch(`/api/v1/projects/${projectId}/palettes`);
+const paletteObject = await paletteFetch.json();
+const paletteArray = paletteObject.palettes
+ 
+ $('.selected-project').append(`<h3> ${projectTitle} </h3>`)
+
+const setPalette = paletteArray.forEach(palette => 
+
+  $(`.selected-project`).append (`
+
+      <div class= "project-palette" id ="${palette.id}">
+      <h4> ${palette.title} </h4>
+      <div class = "palette-row">
+        <div 
+          class = "palette-box1 palette-box"
+          style = "background-color: ${palette.color1}">
+        </div>
+        <div class = "palette-box2 palette-box"
+        style = "background-color: ${palette.color2}">
+        </div>
+          <div class = "palette-box3 palette-box"
+          style = "background-color: ${palette.color3}">
+          </div>
+          <div class = "palette-box4 palette-box"
+          style = "background-color: ${palette.color4}"> </div>
+          <div class = "palette-box5 palette-box"
+          style = "background-color: ${palette.color5}"> </div>
+      </div>
+          <img class = "trash-icon delete-btn" src = "images/waste-bin.png"/>
+          </div>
+    `)
+ )
+
+// const selectedPalettes = palettes.filter(palette => )
+//  const paletteFetch = await fetch(`/api/v1/projects/${projectId}/palettes`);
+//   const paletteObject = await paletteFetch.json();
+//   const palette = paletteObject.palettes
+
+
+  // const palette = palettes.find(palette => palette.title === paletteTitle);
+
+}
 
 
 const setColors = () => {
@@ -60,46 +117,24 @@ const getProjects = async () => {
   projects = projectObject.projects
   appendSelect()
   palettes = [];
-  
-  // projects.forEach(project => {
-  //   appendProjects(project)
-  // })
 
 
   projects.forEach(project => {
     getPalettes(project.id, project.title)
+
   })
 }
 
 
-const getSpecificProject = async (projectId) => {
-const projectFetch = await fetch (`/api/v1/projects/${projectId}`);
-const projectObject = await projectFetch.json();
-const selectedProject = projectObject.projects;
-const projectTitle = selectedProject[0].title;
-appendPalette(projectTitle, selectedProject)
-}
-
-
-// const displaySavedPalettes = (projectTitle, palette) => {
-//   $('.display-projects').append(`<h3>${projectTitle}</h3>`);
-
-//   for (var i = 0; i < palette.length; i++) {
-//     $('.display-projects').append(`
-//       <div class="saved-palette">
-//         <h4>${palette[i].title}</h4>
-//         <div class="square-holder">
-//           <div class="project-square" style="background-color:${palette[i].color1}"></div>
-//           <div class="project-square" style="background-color:${palette[i].color2}"></div>
-//           <div class="project-square" style="background-color:${palette[i].color3}"></div>
-//           <div class="project-square" style="background-color:${palette[i].color4}"></div>
-//           <div class="project-square" style="background-color:${palette[i].color5}"></div>
-//         </div>
-//         <button class="delete-btn" id=${palette[i].title}>delete</button>
-//       </div>
-//     `);
-//   }
+// const getSpecificProject = async (projectId) => {
+// const projectFetch = await fetch (`/api/v1/projects/${projectId}`);
+// const projectObject = await projectFetch.json();
+// const selectedProject = projectObject.projects;
+// const projectTitle = selectedProject[0].title;
+// appendPalette(projectTitle, selectedProject)
 // }
+
+
 
 const appendPalette= (projectTitle, paletteArray) => {
 
@@ -110,7 +145,7 @@ const appendPalette= (projectTitle, paletteArray) => {
 
   $(`.project-container`).append (`
 
-      <div class= "project-palette" id ="${palette.id}">
+      <div class= "project-palette" id ="palette-${palette.id}">
       <h4> ${palette.title} </h4>
       <div class = "palette-row">
         <div 
@@ -128,7 +163,7 @@ const appendPalette= (projectTitle, paletteArray) => {
           <div class = "palette-box5 palette-box"
           style = "background-color: ${palette.color5}"> </div>
       </div>
-          <img class = "trash-icon delete-btn" src = "images/waste-bin.png"/>
+          
           </div>
     `)
  )
@@ -138,11 +173,35 @@ const appendPalette= (projectTitle, paletteArray) => {
 
 
 const appendSelect = () => {
-  const projectSelect = projects.map(project => 
+
+  if(newAddedProject) {
+   $('.color-select').append(`
+    <option class = "color-value" value = ${newAddedProject.id} selected > ${newAddedProject.title} </option>`)
+    newAddedProject = null;
+  } else {
+    const projectSelect = projects.map(project => 
+
+
     `<option class = "color-value" value = ${project.id}> ${project.title} </option>`
   );
   $('.color-select').html(projectSelect)
+    }
+  
+  displaySelectProject()
 }
+
+//   if (selectedProject) {
+//    $('.color-select').append(`
+//     <option class = "color-value" value = ${selectedProject.id} selected > ${selectedProject.title} </option>`)
+
+//   } else {
+    
+//   }
+
+
+//   displaySelectProject()
+
+// }
 
 
 const postProject = async () => {
@@ -156,13 +215,21 @@ const postProject = async () => {
     body: JSON.stringify({title: newProjectName})
   })
 
+  const newSelectedProjectId = await savedProject.json()
+  const newProjectObject = Object.assign ({}, {title: newProjectName}, newSelectedProjectId)
+  newAddedProject = newProjectObject
+
   newProjectTitle.val('')
+
+
   $('.project-container').html('')
   getProjects()
 }
 
 const grabPalette = () => {
   const projectId = parseInt($('#project-select').val())
+  const projectTitle = $('#project-select option:selected').text()
+  selectedProject = {title: projectTitle, id: projectId}
 
   const paletteBody = {
     title: $('.palette-input').val(),
@@ -174,6 +241,9 @@ const grabPalette = () => {
   }
 
   postPalette(projectId, paletteBody)
+
+
+  displaySelectProject()
   $('.palette-input').val('')
 }
 
@@ -192,10 +262,9 @@ const postPalette = async (projectId, palette) => {
 
 }
 
-$('.project-container').on('click', '.delete-btn', async function() {
-  const paletteId = parseInt($(this).parent().attr('id'))
-  
-  const deletePalette = await fetch(`api/v1/palettes/${paletteId}`, {
+$('.selected-project').on('click', '.delete-btn', async function() {
+  const paletteId = $(this).parent().attr('id')
+   const deletePalette = await fetch(`api/v1/palettes/${paletteId}`, {
     method: 'DELETE'
   });
 
@@ -203,9 +272,13 @@ $('.project-container').on('click', '.delete-btn', async function() {
 
   $(this).parent().remove();
 
+
+ $(`#palette-${paletteId}`).remove();
+  // $(`'#palette-${paletteId}'`).remove();
+
 });
 
-
+$('#project-select').on('change', displaySelectProject)
 $('.save-palette-btn').on('click', grabPalette)
 $('.save-project-btn').on('click', postProject)
 $('.generate-btn').on('click', setColors)
