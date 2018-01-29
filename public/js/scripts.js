@@ -33,7 +33,6 @@ const projectTitle = $('#project-select option:selected').text()
 const paletteFetch = await fetch(`/api/v1/projects/${projectId}/palettes`);
 const paletteObject = await paletteFetch.json();
 const paletteArray = paletteObject.palettes
- console.log(paletteArray)
  $('.selected-project').append(`<h3 class = "selected-project-hed"> ${projectTitle} </h3>`)
 
 const setPalette = paletteArray.forEach(palette => 
@@ -116,14 +115,12 @@ const getProjects = async () => {
   const projectFetch = await fetch ('/api/v1/projects');
   const projectObject = await projectFetch.json();
   projects = projectObject.projects
-  // appendSelect()
   palettes = [];
-  // displaySelectProject()
 
 
   projects.forEach(project => {
     getPalettes(project.id, project.title)
-    // appendSelect(project.id, project.title)
+  
 
   })
 }
@@ -133,18 +130,22 @@ const getProjects = async () => {
 
 const appendPalette= (projectTitle, paletteArray) => {
 
+const getTitle = projects.find(project => project.title === projectTitle)
+const getId = getTitle.id
+
  $('.project-container').append(` 
 
-<div class = "project-card" id= ${projectTitle}>
+<div class = "project-card" id= ${getId}>
   <h3 class = project-title-hed> ${projectTitle} </h3>
 </div>
   `)
 
-const title = projectTitle
+
+
 
  const newPalette = paletteArray.forEach(palette => 
 
- $(`#${projectTitle}`).append(`<div class= "project-palette" id ="palette-${palette.id}">
+ $(`#${palette.project_id}`).append(`<div class= "project-palette" id ="palette-${palette.id}">
     <h4> ${palette.title} </h4>
 
     <div class = "palette-row">
@@ -173,11 +174,6 @@ const title = projectTitle
 
  }
 
-
-
- 
-
-  // $('.palettes-for-project').html(setPalette)
 
 
 

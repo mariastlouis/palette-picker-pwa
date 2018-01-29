@@ -181,5 +181,33 @@ describe('get /api/v1/projects/:id', () => {
     })
   })
   
+  describe('get /api/v1/projects/:projectid/palettes', () => {
+  it('should get the palettes for a projct', () => {
+    return chai.request(server)
+    .get('/api/v1/projects/20/palettes')
+    .then(response => {
+      response.should.have.status(200);
+      response.body.should.be.a('object');
+    })
+    .catch(error => {
+      throw error;
+    })
+  })
+
+    it('should throw an error if project is not found', () => {
+    return chai.request(server)
+    .get('/api/v1/projects/11789/palettes')
+    .then(response => {
+      response.should.have.status(404);
+    })
+    .catch(error => {
+      throw error;
+    })
+  })
+})
+
+
+
+
 
 });
