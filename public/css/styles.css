@@ -238,8 +238,7 @@ select:not([multiple]) {
 .project-card {
   box-shadow: 1.5px 3px 3px 1.5px #566782;
   margin: 10px;
-  min-width: 220px;
-  height: 200px;
+  min-width: 160px;
   padding: 10px;
 }
 .palette-row {
