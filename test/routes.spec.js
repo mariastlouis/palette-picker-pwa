@@ -35,12 +35,12 @@ describe('Client Routes', () => {
 });
 
 describe('API Routes', () => {
-   beforeEach( (done) => {
+  beforeEach((done) => {
     knex.seed.run()
-      .then(() => {
-        done();
-      });
+    .then(() => done())
   });
+
+
 
 describe('get /api/v1/projects', () => {
     it('should get from api/v1/projects', () => {
@@ -49,7 +49,6 @@ describe('get /api/v1/projects', () => {
         .then(response => {
           response.should.have.status(200);
           response.should.be.json;
-          response.body.projects.length.should.equal(1);
           response.body.projects[0].should.have.property('id');
           response.body.projects[0].should.have.property('title');
         })
@@ -74,6 +73,44 @@ describe('POST /api/v1/projects', () => {
       throw error;
     })
   })
+
+  it('should throw and error if the project has no title', () => {
+    return chai.request(server)
+    .post('/api/v1/projects')
+    .send({
+      whoseit: 'whatsit'
+    })
+    .then(response => {
+      response.should.have.status(422)
+    })
+    .catch(error => {
+      throw error;
+    })
+  })
+});
+
+
+
+describe('GET /api/v1/palettes', () => {
+  it('should get from api/v1/palettes', () => {
+    return chai.request(server)
+    .get('/api/v1/palettes')
+    .then(response => {
+      response.should.have.status(200)
+      response.body.palettes[0].should.have.property('id');
+      response.body.palettes[0].should.have.property('title');
+      response.body.palettes[0].should.have.property('project_id');
+      response.body.palettes[0].should.have.property('color1');
+      response.body.palettes[0].should.have.property('color2');
+      response.body.palettes[0].should.have.property('color3');
+      response.body.palettes[0].should.have.property('color4');
+      response.body.palettes[0].should.have.property('color5');
+    })
+    .catch(error => {
+      throw error;
+    })
+  })
+
 });
   
 
