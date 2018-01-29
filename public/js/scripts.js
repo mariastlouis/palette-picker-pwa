@@ -126,8 +126,6 @@ const getProjects = async () => {
 }
 
 
-
-
 const appendPalette= (projectTitle, paletteArray) => {
 
 const getTitle = projects.find(project => project.title === projectTitle)
@@ -173,8 +171,6 @@ const getId = getTitle.id
 )
 
  }
-
-
 
 
 const appendNewProjectSelect = (projectId, projectTitle) => {
