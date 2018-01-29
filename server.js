@@ -103,7 +103,13 @@ app.get('/api/v1/projects/:projectId/palettes', (request, response) =>{
   const {projectId} = request.params;
   database('palettes').where('project_id', projectId).select()
   .then(palettes =>{
-    return response.status(200).json({palettes})
+    if(palettes.length) {
+      return response.status(200).json({palettes})
+    } else response.status(404).json({
+      error: `Could not find project with an id of ${projectId}`
+    })
+
+    
   })
   .catch(error => {
     return response.status(500).json({error})
@@ -140,4 +146,6 @@ app.delete('/api/v1/palettes/:id', (request, response) => {
       return response.status(500).json({ error });
     });
 });
+
+module.exports = app; // Exports server as app to be used in testing environment
 
