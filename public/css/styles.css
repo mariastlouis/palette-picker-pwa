@@ -221,17 +221,12 @@ select:not([multiple]) {
   margin: 10px;
 }
 
-.project-card-holder {
-  display:flex;
-  flex-direction:row;
-  margin-left: auto;
-  margin-right:auto;
-  width: 1000px;
-}
 
 .project-container {
   display:flex;
-  flex-wrap: wrap;
+  flex-direction: row;
+  width: 90%;
+  overflow: scroll;
 }
 
 .project-palette {
@@ -243,7 +238,8 @@ select:not([multiple]) {
 .project-card {
   box-shadow: 1.5px 3px 3px 1.5px #566782;
   margin: 10px;
-  width: 220px;
+  min-width: 220px;
+  height: 200px;
   padding: 10px;
 }
 .palette-row {
@@ -389,7 +385,7 @@ font-size: 28px;
     to {transform: rotate(72deg);}
 } 
 
-@media screen and (max-width: 1000px) {
+/*@media screen and (max-width: 1000px) {
   .project-card-holder {
     width: 750px;
   }
@@ -399,7 +395,7 @@ font-size: 28px;
   .project-card-holder { 
     width: 500px;
   }
-}
+}*/
 
 @media screen and (max-width: 680px) {
   .palette-section { 
@@ -412,11 +408,11 @@ font-size: 28px;
   }
 }
 
-@media screen and (max-width: 520px) {
+/*@media screen and (max-width: 520px) {
   .project-card-holder { 
     width: 250px;
   }
-}
+}*/
 
 @media screen and (max-width: 430px) {
   .opaque { 
