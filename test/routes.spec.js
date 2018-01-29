@@ -173,5 +173,13 @@ describe('get /api/v1/projects/:id', () => {
     })
   });
   
+  it('should throw an error if id is not found', () => {
+    return chai.request(server)
+    .get('/api/v1/projects/780')
+    .then(response => {
+      response.should.have.status(404)
+    })
+  })
+  
 
 });
