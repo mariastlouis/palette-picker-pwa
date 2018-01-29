@@ -67,6 +67,7 @@ describe('POST /api/v1/projects', () => {
       title: 'Mock Project'
     })
     .then(response => {
+     
       response.should.have.status(201);
     })
     .catch(error => {
@@ -112,6 +113,65 @@ describe('GET /api/v1/palettes', () => {
   })
 
 });
+
+describe('POST /api/v1/projects/:projectid/palettes', () => {
+  it('should post a palette', () => {
+    return chai.request(server)
+    .post('/api/v1/projects/20/palettes')
+    .send({
+      title: 'newpalette',
+      color1: '#6E8EB1',
+      color2: '#59F515',
+      color3: '#2ECCE6',
+      color4: '#74B54A',
+      color5: '#5F3627',
+      project_id: 20
+    })
+    .then(response => {
+      response.should.have.status(201);
+      response.body.should.be.a('object');
+    })
+    .catch(error => {
+      throw error;
+    })
+  })
+   
+   it('should throw an error if required parameter is missing', () => {
+    return chai.request(server)
+    .post('/api/v1/projects/20/palettes')
+    .send({
+      title: 'anotherPalette',
+      color1: '#6E8EB1',
+      color2: '#59F515',
+      color3: '#2ECCE6',
+      color4: '#74B54A',
+    })
+    .then(response => {
+      response.should.have.status(422);
+    })
+    .catch(error => {
+      throw error;
+    })
+  })
+
+
+})
+
+describe('get /api/v1/projects/:id', () => {
+    it('should get a specific project', () => {
+      return chai.request(server)
+        .get('/api/v1/projects/23')
+        .then(response => {
+          response.should.have.status(200);
+          response.should.be.json;
+          response.body.projects[0].should.have.property('id');
+          response.body.projects[0].should.have.property('title');
+        })
+        .catch(error => {
+          throw error;
+        })
+    })
+  });
   
 
 });
