@@ -12,9 +12,10 @@ database:
   override:
     - sudo -u postgres psql -p 5432 -c "create database palettes;"
     - knex migrate:latest
+
 test:
   override:
-    -mocha --exit
+    - mocha --exit
 
 deployment:
   staging:
