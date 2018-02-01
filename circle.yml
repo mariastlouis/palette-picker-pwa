@@ -1,5 +1,5 @@
 machine: 
   timezone: 
     America/Denver
-node: 
+  node: 
     version: 8.3.0
