@@ -240,8 +240,18 @@ const postPalette = async (projectId, palette) => {
   $('.project-container').html('')
   getProjects();
   displaySelectProject(projectId)
+  paletteNotification(palette)
 
 }
+
+
+  const paletteNotification = (palette) => {
+  navigator.serviceWorker.controller.postMessage({ 
+    type: 'add-palette',
+    paletteName: palette.title
+  });
+}
+
 
 $('.selected-project').on('click', '.delete-btn', async function() {
   const paletteId = parseInt($(this).parent().parent().attr('id'))
